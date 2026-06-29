@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import CustomCursor from '../components/CustomCursor.astro';
+import Header from '../components/Header.astro';
+import Transformations from '../components/Transformations.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Transformations | Vanguard Transformation Partners</title>
+    
+    <!-- Google Fonts for Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <CustomCursor />
+    <Header />
+    
+    <!-- We add a bit of padding here so it doesn't overlap entirely with the fixed header -->
+    <main style="padding-top: 10rem;">
+      <Transformations />
+    </main>
+    
+    <Footer />
+
+    <script>
+      // Scroll Intersection Observer for reveal animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      let delayCounter = 0;
+      let resetTimer = null;
+
+      const observer = new IntersectionObserver((entries) => {
+        const intersecting = entries.filter(e => e.isIntersecting);
+        intersecting.forEach(entry => {
+          if (!entry.target.style.transitionDelay) {
+            entry.target.style.transitionDelay = `${delayCounter * 0.15}s`;
+            delayCounter++;
+          }
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+
+        if (intersecting.length > 0) {
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(() => { delayCounter = 0; }, 200);
+        }
+      }, observerOptions);
+
+      // Select all elements to reveal
+      document.querySelectorAll('.reveal-text').forEach(el => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

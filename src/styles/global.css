@@ -1,0 +1,129 @@
+:root {
+  /* Colors */
+  --color-black: #0b1012;
+  --color-white: #ffffff;
+  --color-cream: #f3f0ec;
+  --color-taupe: #d4cec6;
+  --color-grey: #212325;
+  --color-dark: #111111;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+
+  /* Easing */
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  /* Spacing */
+  --space-sm: 2rem;
+  --space-md: 4rem;
+  --space-lg: 8rem;
+  --space-xl: 15rem;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px; /* Base 10px for easier rem calculations (1rem = 10px) */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-grey);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utilities */
+.container {
+  padding: 0 var(--space-sm);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+}
+
+.grid-24 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid-24 {
+    grid-template-columns: repeat(24, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Animations */
+.reveal-text {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.reveal-text span {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.8s var(--ease-out-quart);
+}
+
+.reveal-text.is-visible span {
+  transform: translateY(0);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-grey);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-taupe);
+}

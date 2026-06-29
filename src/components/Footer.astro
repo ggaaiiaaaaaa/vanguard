@@ -1,0 +1,104 @@
+---
+// Footer.astro
+---
+<footer class="footer">
+  <div class="wordmark-container">
+    <div class="wordmark">VANGUARD</div>
+  </div>
+  
+  <div class="bottom">
+    <div class="copyright">
+      &copy; {new Date().getFullYear()} Vanguard Transformation Partners
+    </div>
+    
+    <div class="nav">
+      <a href="mailto:connect@vanguardleadership.com.ph" class="link">connect@vanguardleadership.com.ph</a>
+      <a href="#team" class="link">Our Team</a>
+      <a href="#transformations" class="link">Transformations</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    height: 100svh;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .wordmark-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20vh;
+    opacity: 0.8;
+  }
+
+  .wordmark {
+    font-size: 20vw;
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+  }
+
+  .bottom {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-taupe);
+  }
+
+  @media (max-width: 768px) {
+    .bottom {
+      flex-direction: column;
+      gap: 2rem;
+      padding-bottom: 4rem;
+    }
+  }
+
+  .nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .link {
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.3s var(--ease-out-cubic);
+  }
+
+  .link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+// CustomCursor.astro
+---
+<div class="cursor" id="custom-cursor">
+  <span class="label"></span>
+</div>
+
+<style>
+  @media (pointer: coarse) {
+    .cursor {
+      display: none !important;
+    }
+  }
+
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10rem;
+    height: 4.4rem;
+    margin: 2rem 0 0 2rem;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4.4rem; /* Restored original pill shape */
+    
+    /* Original Default Glassmorphism styling */
+    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.2));
+    backdrop-filter: blur(2rem);
+    -webkit-backdrop-filter: blur(2rem);
+    
+    transition: opacity 0.2s linear, background 0.3s var(--ease-out-cubic), backdrop-filter 0.3s ease;
+  }
+
+  .cursor.is-visible {
+    opacity: 1;
+  }
+
+  /* When hovering over text or links, it becomes a "magnifying glass" while keeping the same shape */
+  .cursor.is-hovering-text {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(0px) brightness(1.5) contrast(1.2);
+    -webkit-backdrop-filter: blur(0px) brightness(1.5) contrast(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.getElementById('custom-cursor');
+    if (!cursor) return;
+    
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      if (!cursor.classList.contains('is-visible')) {
+        cursor.classList.add('is-visible');
+      }
+
+      // Check what we are hovering over
+      const target = e.target;
+      const isTextNode = target.closest('p, h1, h2, h3, h4, a, span.reveal-text, .member-desc');
+      
+      if (isTextNode) {
+        cursor.classList.add('is-hovering-text');
+      } else {
+        cursor.classList.remove('is-hovering-text');
+      }
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursor.classList.remove('is-visible');
+    });
+
+    const updateCursor = () => {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+      requestAnimationFrame(updateCursor);
+    };
+    updateCursor();
+  });
+</script>

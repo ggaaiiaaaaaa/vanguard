@@ -1,0 +1,176 @@
+---
+// Team.astro
+---
+<section class="team-panel" id="team">
+  <div class="container">
+    <div class="grid-24">
+      <div class="header-text">
+        <span class="label">Our Team</span>
+      </div>
+      
+      <div class="team-content">
+        <h2 class="team-heading">
+          <span class="reveal-text"><span>Your partners in building</span></span>
+          <span class="reveal-text"><span>lasting transformation.</span></span>
+        </h2>
+        
+        <div class="team-grid">
+          <div class="member">
+            <img class="member-image" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" alt="Walden Chu" />
+            <h4 class="member-name">Walden Chu</h4>
+            <span class="member-role">Founder & President</span>
+            <p class="member-desc">Walden drives clarity of purpose for the team. He advocates Godly leadership at work, and applies these principles to the diversified businesses he is scaling up. He is committed to the virtue of pouring ourselves out courageously and completely.</p>
+            <span class="unique-design">Unique Design: Awakening Generations</span>
+          </div>
+
+          <div class="member">
+            <img class="member-image" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Maricris Ong" />
+            <h4 class="member-name">Maricris Ong</h4>
+            <span class="member-role">Managing Director</span>
+            <p class="member-desc">Maricris brings 20 years of OD experience, overseeing the entire enterprise. Her heart for the Lord and passion to serve others continues to inspire cultures of hope, joy and excellence in the workplace.</p>
+            <span class="unique-design">Unique Design: Igniting Life</span>
+          </div>
+
+          <div class="member">
+            <img class="member-image" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80" alt="Ina Roman-Chu" />
+            <h4 class="member-name">Ina Roman-Chu</h4>
+            <span class="member-role">Director - Content & Quality</span>
+            <p class="member-desc">Ina works closely with all teams to develop ideas and content that support Vanguard’s mission of bringing eternal perspectives to transform hearts and minds in the marketplace.</p>
+            <span class="unique-design">Unique Design: Revealing Majesty</span>
+          </div>
+          
+          <div class="member">
+            <img class="member-image" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80" alt="Dan Esguerra" />
+            <h4 class="member-name">Dan Esguerra</h4>
+            <span class="member-role">Senior Manager, Transformation Facilitation</span>
+            <p class="member-desc">Dan stewards the implementation of Vanguard’s programs and develops the team to be excellent facilitators of transformation and freedom in Jesus Christ.</p>
+            <span class="unique-design">Unique Design: Bridging Relationships</span>
+          </div>
+
+          <div class="member">
+            <img class="member-image" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Kristel Valle" />
+            <h4 class="member-name">Kristel Valle</h4>
+            <span class="member-role">Senior Transformation Facilitator</span>
+            <p class="member-desc">Kristel’s heart for the next generation makes her an effective facilitator for younger leaders, helping young professionals bear fruit through a life abiding in Christ.</p>
+            <span class="unique-design">Unique Design: Inspiring Generations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-panel {
+    background-color: var(--color-cream);
+    color: var(--color-black);
+    padding: var(--space-xl) 0;
+  }
+
+  .header-text {
+    grid-column: 2 / 24;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .header-text {
+      grid-column: 4 / 8;
+      margin-bottom: 0;
+    }
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-grey);
+  }
+
+  .team-content {
+    grid-column: 2 / 24;
+  }
+
+  @media (min-width: 768px) {
+    .team-content {
+      grid-column: 8 / 22;
+    }
+  }
+
+  .team-heading {
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8rem;
+  }
+
+  @media (min-width: 768px) {
+    .team-heading {
+      font-size: 5rem;
+      letter-spacing: -0.03em;
+    }
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem;
+    }
+  }
+
+  .member-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 2rem;
+    transition: transform 0.8s var(--ease-out-cubic);
+  }
+
+  .member:hover .member-image {
+    transform: scale(1.02);
+  }
+
+  .member-name {
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .member-role {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--color-grey);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  .member-desc {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    color: var(--color-dark);
+  }
+
+  .unique-design {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-black);
+    display: inline-block;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+</style>
+
+

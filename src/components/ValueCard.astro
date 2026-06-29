@@ -1,0 +1,128 @@
+---
+import { ShieldCheck, Compass, HeartHandshake, Award } from '@lucide/astro';
+
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const { title, description, icon } = Astro.props;
+
+// Dynamically select the correct icon component
+let IconComponent = Award;
+if (icon === 'ShieldCheck') IconComponent = ShieldCheck;
+else if (icon === 'Compass') IconComponent = Compass;
+else if (icon === 'HeartHandshake') IconComponent = HeartHandshake;
+---
+
+<div class="value-card fluid-glass-card">
+  <!-- Glowing border hover effect -->
+  <div class="hover-glow-bg"></div>
+  
+  <div class="card-header">
+    <div class="icon-wrapper">
+      <IconComponent size={24} />
+    </div>
+    <span class="value-badge">Value</span>
+  </div>
+  
+  <div class="card-body">
+    <h3 class="card-title">
+      {title}
+    </h3>
+    <p class="card-desc">
+      {description}
+    </p>
+  </div>
+</div>
+
+<style>
+  .value-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .value-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .hover-glow-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -10;
+  }
+
+  .value-card:hover .hover-glow-bg {
+    opacity: 1;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(99, 102, 241, 0.1));
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #22d3ee;
+    transition: transform 0.3s ease;
+  }
+
+  .value-card:hover .icon-wrapper {
+    transform: scale(1.1);
+  }
+
+  .value-badge {
+    font-size: 0.75rem;
+    font-family: monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.3s ease;
+  }
+
+  .value-card:hover .value-badge {
+    color: rgba(34, 211, 238, 0.5);
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    transition: color 0.2s ease;
+  }
+
+  .value-card:hover .card-title {
+    color: #67e8f9;
+  }
+
+  .card-desc {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,254 @@
+---
+// Hero.astro
+---
+<section class="hero">
+  <div class="background">
+    <!-- Placeholder video heavily filtered to provide a subtle moving texture over the gradient -->
+    <video class="bg-video" autoplay loop muted playsinline>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+    </video>
+    <div class="overlay"></div>
+    <div class="glow-orb"></div>
+  </div>
+  
+  <div class="container hero-content">
+    <div class="grid-24">
+      <h1 class="headline">
+        <span class="reveal-text"><span>Facilitators Of</span></span>
+        <span class="reveal-text"><span class="typing-container"><span class="typing-text"></span><span class="cursor-blink">|</span></span></span>
+      </h1>
+      <p class="sub-text">
+        <span class="reveal-text" style="transition-delay: 0.2s"><span>We help you maximize the potential</span></span>
+        <span class="reveal-text" style="transition-delay: 0.3s"><span>of your people and organization.</span></span>
+      </p>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">
+    <span class="scroll-text">Scroll to explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(45deg, #0b1012, #162433, #0b1012);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .background {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+  
+  .bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    filter: grayscale(100%) contrast(150%);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(11,16,18,1) 100%);
+    z-index: -1;
+  }
+
+  .glow-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(137,207,240,0.08) 0%, rgba(0,0,0,0) 60%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    padding-top: 10rem;
+  }
+
+  .headline {
+    grid-column: 2 / 24;
+    font-size: clamp(4rem, 8vw, 10rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .headline {
+      grid-column: 4 / 22;
+      letter-spacing: -0.04em;
+    }
+  }
+
+  .reveal-text {
+    display: block;
+  }
+
+  .sub-text {
+    grid-column: 2 / 24;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--color-taupe);
+  }
+
+  @media (min-width: 768px) {
+    .sub-text {
+      grid-column: 16 / 24;
+      font-size: 2.2rem;
+    }
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 1s var(--ease-out-quart) forwards 1s;
+  }
+
+  .scroll-text {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-taupe);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-white);
+    animation: scrollLineDrop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+  }
+
+  @keyframes scrollLineDrop {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .typing-container {
+    display: inline-block;
+  }
+  
+  .typing-text {
+    color: #ADD8E6; /* Light blue */
+  }
+
+  .cursor-blink {
+    display: inline-block;
+    color: var(--color-white);
+    font-weight: 100;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Reveal text logic
+    setTimeout(() => {
+      document.querySelectorAll('.hero .reveal-text').forEach(el => {
+        el.classList.add('is-visible');
+      });
+      
+      // Start typing animation after text reveals
+      setTimeout(initTyping, 1000);
+    }, 100);
+
+    // Parallax background video
+    const bgVideo = document.querySelector('.bg-video');
+    window.addEventListener('scroll', () => {
+      if (bgVideo) {
+        bgVideo.style.transform = `translateY(${window.scrollY * 0.4}px)`;
+      }
+    });
+
+    // Typing effect logic
+    const words = ["Transformation.", "Growth.", "Innovation.", "Change."];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.querySelector('.typing-text');
+    
+    function initTyping() {
+      if (!typingElement) return;
+      
+      const currentWord = words[wordIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingElement.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      }
+      
+      let typeSpeed = isDeleting ? 40 : 120; // Speed of typing and deleting
+      
+      if (!isDeleting && charIndex === currentWord.length) {
+        typeSpeed = 2000; // Pause at the end of the word
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length; // Move to next word
+        typeSpeed = 500; // Pause before typing the new word
+      }
+      
+      setTimeout(initTyping, typeSpeed);
+    }
+  });
+</script>

@@ -1,0 +1,80 @@
+---
+// QuotePanel.astro
+---
+<section class="quote-panel">
+  <div class="container">
+    <div class="grid-24">
+      <div class="header-text">
+        <span class="label">Our Purpose</span>
+      </div>
+      <div class="quote-content">
+        <h2 class="quote">
+          <span class="reveal-text"><span>To ignite meaningful</span></span>
+          <span class="reveal-text"><span>and lasting transformations</span></span>
+          <span class="reveal-text"><span>in the workplace.</span></span>
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .quote-panel {
+    background-color: var(--color-cream);
+    color: var(--color-grey);
+    padding: var(--space-xl) 0;
+  }
+
+  .header-text {
+    grid-column: 2 / 24;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .header-text {
+      grid-column: 4 / 8;
+      margin-bottom: 0;
+    }
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-taupe);
+  }
+
+  .quote-content {
+    grid-column: 2 / 24;
+  }
+
+  @media (min-width: 768px) {
+    .quote-content {
+      grid-column: 8 / 22;
+    }
+  }
+
+  .quote {
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .quote {
+      font-size: 5rem;
+      letter-spacing: -0.03em;
+    }
+  }
+  
+  .sub-quote {
+    font-size: 1.8rem;
+    line-height: 1.5;
+    color: var(--color-dark);
+    max-width: 80rem;
+  }
+</style>

@@ -1,0 +1,195 @@
+---
+// PurposeJourney.astro
+---
+<section class="purpose-journey-panel" id="purpose">
+  <div class="container">
+    <div class="grid-24">
+      
+      <!-- Left Split: The Purpose Quote -->
+      <div class="split-left">
+        <div class="header-text">
+          <span class="label">Our Purpose</span>
+        </div>
+        <h2 class="quote">
+          <span class="reveal-text"><span>To ignite meaningful</span></span>
+          <span class="reveal-text"><span>and lasting transformations</span></span>
+          <span class="reveal-text"><span>in the workplace.</span></span>
+        </h2>
+      </div>
+
+      <!-- Right Split: The Journey & Core Identity -->
+      <div class="split-right">
+        <h3 class="heading">
+          <span class="reveal-text"><span>When you lean in and</span></span>
+          <span class="reveal-text"><span>step into the</span></span>
+          <span class="reveal-text"><span>transformation journey,</span></span>
+          <span class="reveal-text"><span>deeply-rooted change happens.</span></span>
+        </h3>
+        
+        <div class="journey-content">
+          <p class="paragraph">
+            <strong>AT THE CENTER</strong> of who we are as an organization is <strong>JESUS CHRIST</strong>, who holds the power for genuine transformation. Our values, principles and strategies are rooted in biblical truth.
+          </p>
+          <p class="paragraph">
+            <strong>AT VANGUARD</strong>, we believe that we are His vessels. We have a responsibility to pour out into the lives of others because God has already poured out into our own hearts.
+          </p>
+          <blockquote class="scripture">
+            “For we are His workmanship, created in Christ Jesus for good works, which God prepared beforehand that we should walk in them.”
+            <br>
+            <span class="reference">- Ephesians 2:10</span>
+          </blockquote>
+          
+          <a href="#about" class="button">More About Us</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .purpose-journey-panel {
+    background-color: var(--color-cream);
+    color: var(--color-grey);
+    padding: var(--space-xl) 0;
+  }
+
+  .split-left {
+    grid-column: 2 / 24;
+    margin-bottom: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .split-left {
+      grid-column: 2 / 12;
+      margin-bottom: 0;
+      position: sticky;
+      top: 15rem;
+      align-self: start;
+    }
+  }
+
+  .header-text {
+    margin-bottom: 4rem;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-taupe);
+  }
+
+  .quote {
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .quote {
+      font-size: 5rem;
+      letter-spacing: -0.03em;
+    }
+  }
+
+  .split-right {
+    grid-column: 2 / 24;
+  }
+
+  @media (min-width: 768px) {
+    .split-right {
+      grid-column: 13 / 23;
+    }
+  }
+
+  .heading {
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .heading {
+      font-size: 3.6rem;
+    }
+  }
+
+  .journey-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .paragraph {
+    font-size: 1.8rem;
+    line-height: 1.5;
+  }
+
+  .scripture {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--color-grey);
+    padding-left: 2.5rem;
+    border-left: 2px solid var(--color-grey);
+    margin: 3rem 0;
+    margin-left: 0;
+    font-style: italic;
+  }
+
+  .reference {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 700;
+  }
+
+  .button {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1.8rem 4rem;
+    background-color: transparent;
+    color: var(--color-grey);
+    border: 1px solid var(--color-grey);
+    border-radius: 5rem;
+    transition: all 0.4s var(--ease-out-cubic);
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-grey);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-out-cubic);
+  }
+
+  .button:hover {
+    color: var(--color-white);
+  }
+
+  .button:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+</style>

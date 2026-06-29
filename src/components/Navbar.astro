@@ -1,0 +1,264 @@
+---
+// Navbar component with pure vanilla CSS and glassmorphism
+---
+
+<nav class="nav-container" id="navbar">
+  <div class="nav-inner">
+    <!-- Logo -->
+    <a href="#" class="logo-group">
+      <div class="logo-box">
+        V
+        <div class="logo-overlay"></div>
+      </div>
+      <span class="logo-text">
+        VANGUARD
+      </span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <div class="nav-links">
+      <a href="#purpose" class="nav-link">Our Purpose</a>
+      <a href="#mission" class="nav-link">Mission</a>
+      <a href="#values" class="nav-link">Core Values</a>
+      <a href="#transformations" class="nav-link">Transformations</a>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="nav-cta-wrapper">
+      <a href="#contact" class="glass-btn nav-btn">
+        Contact Us
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mobile-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="mobile-dropdown hidden" id="mobile-menu">
+    <div class="mobile-dropdown-inner">
+      <a href="#purpose" class="mobile-link">Our Purpose</a>
+      <a href="#mission" class="mobile-link">Mission</a>
+      <a href="#values" class="mobile-link">Core Values</a>
+      <a href="#transformations" class="mobile-link">Transformations</a>
+      <hr class="mobile-divider" />
+      <a href="#contact" class="glass-btn mobile-cta-btn">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav-container {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 1.5rem 1.5rem;
+    transition: padding 0.3s ease;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(11, 12, 16, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Logo */
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-box {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .logo-group:hover .logo-box {
+    transform: scale(1.05);
+  }
+
+  .logo-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: #ffffff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .logo-group:hover .logo-overlay {
+    opacity: 0.15;
+  }
+
+  .logo-text {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    font-size: 1.125rem;
+    transition: color 0.3s ease;
+  }
+
+  .logo-group:hover .logo-text {
+    color: #0ea5e9;
+  }
+
+  /* Desktop Links */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta-wrapper {
+      display: none;
+    }
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #d1d5db;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+  }
+
+  .nav-btn {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1.25rem !important;
+  }
+
+  /* Mobile menu button */
+  .mobile-menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-menu-btn:hover {
+    color: #ffffff;
+  }
+
+  .mobile-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: flex;
+    }
+  }
+
+  /* Mobile Dropdown */
+  .mobile-dropdown {
+    position: absolute;
+    top: 5.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(7, 8, 10, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-dropdown.hidden {
+    display: none;
+  }
+
+  .mobile-dropdown-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .mobile-link {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #d1d5db;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-link:hover {
+    color: #ffffff;
+  }
+
+  .mobile-divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-cta-btn {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+</style>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const navbar = document.getElementById('navbar');
+
+  // Toggle mobile menu
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking links
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  // Scroll effect (reduce padding)
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      if (navbar) navbar.style.padding = '0.75rem 1.5rem';
+    } else {
+      if (navbar) navbar.style.padding = '1.5rem 1.5rem';
+    }
+  });
+</script>
