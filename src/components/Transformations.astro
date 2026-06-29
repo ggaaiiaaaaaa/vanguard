@@ -1,5 +1,6 @@
 ---
 // Transformations.astro
+import Button from './Button.astro';
 ---
 <section class="transformations-panel" id="transformations">
   <div class="container">
@@ -16,7 +17,7 @@
         <div class="case-content">
           <span class="case-category">The Coffee Bean & Tea Leaf</span>
           <h3 class="case-title">Identity Fortified</h3>
-          <a href="#" class="case-link">Read Case Study</a>
+          <Button href="#" text="Read Case Study" />
         </div>
       </div>
 
@@ -27,7 +28,7 @@
         <div class="case-content">
           <span class="case-category">Excellence in Adversity</span>
           <h3 class="case-title">Habitat for Humanity Philippines </h3>
-          <a href="#" class="case-link">Read Case Study</a>
+          <Button href="#" text="Read Case Study" />
         </div>
       </div>
     </div>
@@ -150,18 +151,5 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
   }
-
-  .case-link {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 2rem;
-    transition: color 0.3s ease;
-  }
-
-  .case-link:hover {
-    color: var(--color-taupe);
-  }
 </style>
+

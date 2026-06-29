@@ -1,0 +1,124 @@
+---
+// Button.astro
+const { href, text, variant = "is-black", size = "normal" } = Astro.props;
+---
+<a href={href} class="base-button" data-variant={variant} data-size={size}>
+  <svg class="arrow-svg" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      class="arrow-path"
+      d="M0.600006 0V6H13.1"
+      stroke="currentColor"
+      stroke-width="1.2"
+      style="stroke-dashoffset: 0; stroke-dasharray: 18.5px, 0.1px;"
+    />
+    <rect
+      class="arrow-diamond"
+      x="9.18887"
+      y="2.2251"
+      width="5.56065"
+      height="5.56065"
+      transform="rotate(45 9.18887 2.2251)"
+      stroke="currentColor"
+      stroke-width="1.2"
+      fill="none"
+      style="stroke-dashoffset: 0px; stroke-dasharray: 11.1213px, 11.2213px;"
+    />
+  </svg>
+  <span class="label">
+    <span class="line">{text}</span>
+    <span class="line" aria-hidden="true">{text}</span>
+  </span>
+</a>
+
+<style>
+  .base-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    padding: 1.2rem 2rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background-color 0.4s var(--ease-out-cubic), padding 0.4s, font-size 0.4s;
+  }
+
+  .base-button[data-size="large"] {
+    font-size: 1.4rem;
+    padding: 1.6rem 3rem;
+  }
+
+  .base-button[data-variant="is-black"] {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+
+  .base-button[data-variant="is-black"]:hover {
+    background-color: var(--color-grey);
+  }
+
+  .base-button[data-variant="is-white"] {
+    background-color: var(--color-white);
+    color: var(--color-black);
+  }
+
+  .base-button[data-variant="is-white"]:hover {
+    background-color: #f0f0f0;
+  }
+
+  .arrow-svg {
+    width: 1.3em;
+    height: 1em;
+    margin-right: 1.1em;
+    flex-shrink: 0;
+    overflow: visible;
+  }
+
+  /* On hover: erase the L-path */
+  .arrow-path {
+    stroke-dasharray: 18.5px, 18.5px !important;
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .base-button:hover .arrow-path {
+    stroke-dashoffset: -18.5px !important;
+  }
+
+  /* On hover: animate dasharray to fill the diamond gap */
+  .arrow-diamond {
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.77, 0, 0.175, 1), stroke-dasharray 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .base-button:hover .arrow-diamond {
+    stroke-dasharray: 22.2426px, 0px !important;
+    stroke-dashoffset: -11.1213px !important;
+  }
+
+  /* Text slot-machine scroll */
+  .label {
+    height: 1.2em;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .line {
+    display: flex;
+    align-items: center;
+    height: 1.2em;
+    line-height: 1.2em;
+    white-space: nowrap;
+    will-change: transform;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .base-button:hover .line {
+    transform: translateY(-100%);
+  }
+</style>
